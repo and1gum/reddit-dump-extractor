@@ -25,6 +25,23 @@ source ./venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Windows (PowerShell, native)
+
+Use this setup for `reddit_zst_filter_zstandard.py` (Method 2, Python).
+
+```powershell
+py -3 -m venv venv
+.\venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+If activation is blocked by execution policy:
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\venv\Scripts\Activate.ps1
+```
+
 **For reddit_zst_filter_zstd_jq method on macOS:**
 ```bash
 brew install zstd coreutils jq
