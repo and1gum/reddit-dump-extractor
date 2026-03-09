@@ -117,7 +117,7 @@ def process_file_shell(
             )
 
         log.info(
-            f"✓ Completed {os.path.basename(file_path)}: {lines_processed:,} lines, "
+            f"[OK] Completed {os.path.basename(file_path)}: {lines_processed:,} lines, "
             f"{len(all_records):,} matched, {error_lines:,} errors -> {output_path}")
 
         return file_path, lines_processed, len(all_records), error_lines

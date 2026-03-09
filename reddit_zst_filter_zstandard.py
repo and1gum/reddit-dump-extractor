@@ -95,14 +95,14 @@ def process_file_python(
                 )
 
             log.info(
-                f"✓ Completed {os.path.basename(file_path)}: {lines_processed:,} lines, "
+                f"[OK] Completed {os.path.basename(file_path)}: {lines_processed:,} lines, "
                 f"{len(matched_records):,} matched, {error_lines:,} errors -> {output_path}")
         except Exception as e:
             log.error(f"Failed to write output file {output_path}: {e}")
             return file_path, lines_processed, 0, error_lines
     else:
         log.info(
-            f"✓ Completed {os.path.basename(file_path)}: {lines_processed:,} lines, "
+            f"[OK] Completed {os.path.basename(file_path)}: {lines_processed:,} lines, "
             f"0 matched, {error_lines:,} errors (no output file created)")
 
     return file_path, lines_processed, len(matched_records), error_lines
