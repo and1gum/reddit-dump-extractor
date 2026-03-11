@@ -1,0 +1,21 @@
+{
+  "name": "reddit-dump-extractor",
+  "version": "1.0.0",
+  "description": "Tools for filtering and extracting data from compressed Reddit dump files (.zst format).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/and1gum/reddit-dump-extractor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/and1gum/reddit-dump-extractor/issues"
+  },
+  "homepage": "https://github.com/and1gum/reddit-dump-extractor#readme"
+}

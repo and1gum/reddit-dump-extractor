@@ -70,12 +70,9 @@ def process_file_python(
                     f"{os.path.basename(file_path)}: {lines_processed:,} lines, "
                     f"{len(matched_records):,} matched, CPU: {cpu}%, RAM: {mem:.2f} GB")
 
-    except KeyboardInterrupt:
-        log.warning(f"Interrupted while processing {file_path}")
-        raise
     except Exception as err:
-        log.exception(f"Error processing {file_path}: {err!r}")
-        return file_path, lines_processed, 0, error_lines + 1
+        log.error(f"Error processing {file_path}: {err}")
+        return file_path, lines_processed, 0, error_lines
 
     if matched_records:
         try:
@@ -98,14 +95,14 @@ def process_file_python(
                 )
 
             log.info(
-                f"[OK] Completed {os.path.basename(file_path)}: {lines_processed:,} lines, "
+                f"✓ Completed {os.path.basename(file_path)}: {lines_processed:,} lines, "
                 f"{len(matched_records):,} matched, {error_lines:,} errors -> {output_path}")
         except Exception as e:
-            log.exception(f"Failed to write output file {output_path}: {e!r}")
-            return file_path, lines_processed, 0, error_lines + 1
+            log.error(f"Failed to write output file {output_path}: {e}")
+            return file_path, lines_processed, 0, error_lines
     else:
         log.info(
-            f"[OK] Completed {os.path.basename(file_path)}: {lines_processed:,} lines, "
+            f"✓ Completed {os.path.basename(file_path)}: {lines_processed:,} lines, "
             f"0 matched, {error_lines:,} errors (no output file created)")
 
     return file_path, lines_processed, len(matched_records), error_lines
@@ -153,7 +150,6 @@ def main():
         for input_file in input_files:
             output_path = generate_output_path(
                 input_file, args.output_dir, args.format, config)
-            log.info(f"Processing file: {input_file}")
             file_path, lines_processed, matched_count, error_count = process_file_python(
                 input_file,
                 args.field,
@@ -182,7 +178,7 @@ def main():
         log.warning("Processing interrupted by user")
         sys.exit(1)
     except Exception as e:
-        log.exception(f"Error during processing: {e!r}")
+        log.error(f"Error during processing: {e}")
         raise
 
     elapsed = time.time() - start_time
